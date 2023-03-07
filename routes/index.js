@@ -21,4 +21,7 @@ router.post("/reporting", UserController.postReporting);
 //routing delete reporting
 router.delete("/reporting/:id", UserController.deleteReporting);
 
+//routing id reporting
+router.get("/reporting/:id", UserController.getReportingId);
+
 module.exports = router;
