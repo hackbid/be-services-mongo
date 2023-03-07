@@ -118,6 +118,17 @@ module.exports = {
       next(error);
     }
   },
+  getReportingId: async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const collection = getCollection("reports");
+      const result = await collection.findOne({ _id: new ObjectId(id) });
+      if (!result) throw { name: "NotFound" };
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  },
   deleteReporting: async (req, res, next) => {
     try {
       const { id } = req.params;
