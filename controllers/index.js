@@ -129,10 +129,22 @@ module.exports = {
       next(error);
     }
   },
+  getReportingName: async (req, res, next) => {
+    const { itemId } = req.params;
+    try {
+      const collection = getCollection("reports");
+      const result = await collection.find({ itemId: itemId }).toArray();
+      if (result.length != 0) throw { name: "already" };
+      res.status(200).json({ message: "next" });
+    } catch (error) {
+      next(error);
+    }
+  },
   deleteReporting: async (req, res, next) => {
     try {
       const { id } = req.params;
       const collection = getCollection("reports");
+
       const result = await collection.deleteOne({ _id: new ObjectId(id) });
       if (result.deletedCount == 0) throw { name: "NotFound" };
       res.status(200).json({ message: "delete Successfully" });
