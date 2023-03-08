@@ -18,6 +18,10 @@ router.post("/itemHistory/:id/bid", UserController.postBid);
 router.get("/reporting", UserController.getReporting);
 router.post("/reporting", UserController.postReporting);
 
+//router check itemId reporting
+
+router.get("/reporting/find/:itemId", UserController.getReportingName);
+
 //routing delete reporting
 router.delete("/reporting/:id", UserController.deleteReporting);
 
